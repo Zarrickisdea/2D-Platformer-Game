@@ -20,7 +20,7 @@ public class Kill : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            SceneManager.LoadScene("First");
+            other.gameObject.GetComponent<PlayerController>().InstaKill();
         }
     }
 }

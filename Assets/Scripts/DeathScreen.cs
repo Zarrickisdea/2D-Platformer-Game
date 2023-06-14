@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayGame : MonoBehaviour
+public class DeathScreen : MonoBehaviour
 {
-    public Button playButton;
+    public Button playAgainButton;
     public Button quitButton;
     // Start is called before the first frame update
     void Start()
     {
-        if (playButton != null && quitButton != null)
+        if (playAgainButton != null && quitButton != null)
         {
-            playButton.onClick.AddListener(EnterGame);
+            playAgainButton.onClick.AddListener(PlayAgain);
             quitButton.onClick.AddListener(QuitGame);
         }
     }
@@ -24,17 +24,17 @@ public class PlayGame : MonoBehaviour
         
     }
 
-    void EnterGame()
+    void PlayAgain () 
     {
-        if (playButton != null) 
+        if (playAgainButton != null)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
     }
 
-    void QuitGame()
-    { 
-        if (quitButton != null) 
+    void QuitGame ()
+    {
+        if (quitButton != null)
         {
             #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;

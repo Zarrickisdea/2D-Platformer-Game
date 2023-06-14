@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
     {
         if (health <= 0)
         {
-            SceneManager.LoadScene("First");
+            InstaKill();
         }
 
         health -= 1;
@@ -118,6 +118,11 @@ public class PlayerController : MonoBehaviour
         {
             healthDisplay.UpdateHealthDisplay();
         }
+    }
+
+    public void InstaKill()
+    {
+        SceneManager.LoadScene("Death");
     }
 
     public int GetHealth()
