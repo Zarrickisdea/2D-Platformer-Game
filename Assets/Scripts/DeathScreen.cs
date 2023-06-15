@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class DeathScreen : MonoBehaviour
 {
-    public Button playAgainButton;
-    public Button quitButton;
+    [SerializeField] private Button playAgainButton;
+    [SerializeField] private Button quitButton;
 
     void Start()
     {
@@ -15,11 +15,6 @@ public class DeathScreen : MonoBehaviour
             playAgainButton.onClick.AddListener(PlayAgain);
             quitButton.onClick.AddListener(QuitGame);
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     void PlayAgain () 

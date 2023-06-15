@@ -56,11 +56,7 @@ public class Spawner : MonoBehaviour
                     spawnedObject.transform.position = spawnPosition;
                 }
             }
-
-
         }
-
-
     }
 
     private Vector3Int GetDistinctPosition(List<Vector3Int> positions)

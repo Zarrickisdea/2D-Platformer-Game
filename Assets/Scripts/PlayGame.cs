@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class PlayGame : MonoBehaviour
 {
-    public Button playButton;
-    public Button quitButton;
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button quitButton;
 
     void Start()
     {
