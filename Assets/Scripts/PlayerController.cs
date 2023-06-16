@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
@@ -10,14 +8,16 @@ public class PlayerController : MonoBehaviour
     public float velocity;
     public float jump;
     public bool isGrounded;
-    public int collected = 0;
-    private int health = 3;
+    public int collected;
+    private int health;
     public GameObject canvas;
     private HealthDisplay healthDisplay;
     
 
     private void Start () 
     {
+        collected = 0;
+        health = 3;
         rigidbody2d = GetComponent<Rigidbody2D>();
         if (canvas != null)
         {
@@ -48,6 +48,12 @@ public class PlayerController : MonoBehaviour
     private void Update ()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (health <= 0)
+        {
+            Debug.Log(health);
+            InstaKill();
+        }
 
         Animations(horizontal);
         Movement(horizontal, jump);
@@ -108,12 +114,9 @@ public class PlayerController : MonoBehaviour
 
     public void Damage()
     {
-        if (health <= 0)
-        {
-            InstaKill();
-        }
-
-        health -= 1;
+        health = health - 1;
+        Debug.Log(health);
+        
         if (healthDisplay != null)
         {
             healthDisplay.UpdateHealthDisplay();

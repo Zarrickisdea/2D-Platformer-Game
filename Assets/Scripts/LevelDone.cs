@@ -6,7 +6,7 @@ public class LevelDone : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            Debug.Log("GAME OVER!!!");
+            LevelManager.Instance.LevelComplete();
         }
     }
 }

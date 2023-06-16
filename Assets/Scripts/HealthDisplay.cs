@@ -6,7 +6,7 @@ public class HealthDisplay : MonoBehaviour
     public Image heartImagePrefab;
     public Transform heartsContainer;
     private PlayerController playerController;
-    int currentHealth;
+    private int currentHealth;
     public float heartSpace;
 
     private void Start()

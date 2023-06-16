@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Patrolling : MonoBehaviour
 {
@@ -22,7 +20,6 @@ public class Patrolling : MonoBehaviour
     {
 
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("PatrolPoint");
-
 
         patrolPoints = new Transform[pointObjects.Length];
 
