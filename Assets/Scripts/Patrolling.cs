@@ -2,7 +2,7 @@
 
 public class Patrolling : MonoBehaviour
 {
-    public float movementSpeed = 5f;
+    [SerializeField] private float movementSpeed;
 
     private Transform[] patrolPoints;
     private int currentPatrolIndex;
@@ -46,7 +46,6 @@ public class Patrolling : MonoBehaviour
                 }
                 else
                 {
-
                     currentPatrolIndex++;
                     if (currentPatrolIndex >= patrolPoints.Length)
                     {

@@ -3,21 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator Animator;
-    public Rigidbody2D rigidbody2d;
-    public float velocity;
-    public float jump;
-    public bool isGrounded;
+    [SerializeField] private Animator Animator;
+    [SerializeField] private Rigidbody2D rigidbody2d;
+    [SerializeField] private float velocity;
+    [SerializeField] private float jump;
+    [SerializeField] private bool isGrounded;
+    [SerializeField] private LayerMask groundLayerMask;
     public int collected;
     private int health;
-    public GameObject canvas;
+    [SerializeField] private GameObject canvas;
     private HealthDisplay healthDisplay;
     
 
     private void Start () 
     {
-        collected = 0;
         health = 3;
+        collected = 0;
         rigidbody2d = GetComponent<Rigidbody2D>();
         if (canvas != null)
         {
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 && !isGrounded)
+        if (IsCollidingWithLayer(collision, groundLayerMask) && !isGrounded)
         {
             isGrounded = true;
         }
@@ -39,10 +40,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 && isGrounded)
+        if (IsCollidingWithLayer(collision, groundLayerMask) && isGrounded)
         {
             isGrounded = false;
         }
+    }
+    private bool IsCollidingWithLayer(Collision2D collision, LayerMask layerMask)
+    {
+        return (layerMask.value & (1 << collision.gameObject.layer)) != 0;
     }
 
     private void Update ()
@@ -88,22 +93,22 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Animator.SetTrigger("Jumped");
+            Animator.SetTrigger(AnimationTriggers.Jumped);
         }
 
         transform.localScale = scale;
 
         if (Input.GetKeyDown("left ctrl") || Input.GetKeyDown("right ctrl"))
         {
-            Animator.SetTrigger("someTrigger");
-            Animator.ResetTrigger("otherTrigger");
-            Animator.SetBool("Crouched", true);
+            Animator.SetTrigger(AnimationTriggers.SomeTrigger);
+            Animator.ResetTrigger(AnimationTriggers.OtherTrigger);
+            Animator.SetBool(AnimationTriggers.Crouched, true);
         }
         else if (Input.GetKeyUp("left ctrl") || Input.GetKeyUp("right ctrl"))
         {
-            Animator.SetTrigger("otherTrigger");
-            Animator.ResetTrigger("someTrigger");
-            Animator.SetBool("Crouched", false);
+            Animator.SetTrigger(AnimationTriggers.OtherTrigger);
+            Animator.ResetTrigger(AnimationTriggers.SomeTrigger);
+            Animator.SetBool(AnimationTriggers.Crouched, false);
         }
     }
 

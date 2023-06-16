@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class Score : MonoBehaviour
 {
-	public GameObject player;
+	[SerializeField] private GameObject player;
 	private Text text;
 	private int collected;
 
