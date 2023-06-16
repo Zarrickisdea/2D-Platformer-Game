@@ -54,12 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (health <= 0)
-        {
-            Debug.Log(health);
-            InstaKill();
-        }
-
         Animations(horizontal);
         Movement(horizontal, jump);
     }
@@ -119,9 +113,16 @@ public class PlayerController : MonoBehaviour
 
     public void Damage()
     {
-        health = health - 1;
-        Debug.Log(health);
-        
+        if (health <= 1)
+        {
+            InstaKill();
+        }
+
+        else
+        {
+            health = health - 1;
+        }
+      
         if (healthDisplay != null)
         {
             healthDisplay.UpdateHealthDisplay();
