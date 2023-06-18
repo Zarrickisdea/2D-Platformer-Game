@@ -19,21 +19,15 @@ public class DeathScreen : MonoBehaviour
 
     void PlayAgain () 
     {
-        if (playAgainButton != null)
-        {
-            SceneManager.LoadScene(0);
-        }
+        SceneManager.LoadScene(0);
     }
 
     void QuitGame ()
     {
-        if (quitButton != null)
-        {
-            #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-            #else
-            Application.Quit();
-            #endif
-        }
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
     }
 }

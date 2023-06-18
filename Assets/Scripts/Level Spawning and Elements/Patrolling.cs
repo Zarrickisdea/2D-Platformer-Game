@@ -10,23 +10,10 @@ public class Patrolling : MonoBehaviour
 
     private void Start()
     {
-        FindPatrolPoints();
+        patrolPoints = Spawner.Instance.getPatrolPoints();
 
         currentPatrolIndex = 0;
         isMoving = true;
-    }
-
-    private void FindPatrolPoints()
-    {
-
-        GameObject[] pointObjects = GameObject.FindGameObjectsWithTag("PatrolPoint");
-
-        patrolPoints = new Transform[pointObjects.Length];
-
-        for (int i = 0; i < pointObjects.Length; i++)
-        {
-            patrolPoints[i] = pointObjects[i].transform;
-        }
     }
 
     private void Update()

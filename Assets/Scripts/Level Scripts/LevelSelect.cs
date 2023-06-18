@@ -6,6 +6,7 @@ public class LevelSelect : MonoBehaviour
 {
     [SerializeField] private Button[] buttons;
     [SerializeField] private Button mainMenu;
+
     private void Start()
     {
         for (int i = 0;  i < buttons.Length; i++)

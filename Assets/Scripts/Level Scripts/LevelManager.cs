@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void Start ()
+    private void Start()
     {
         if (GetLevelState(Level1) == LevelState.Locked)
         {
@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt(level, (int)state);
     }
 
-    public void LevelComplete ()
+    public void LevelComplete()
     {
         Scene currentScene = SceneManager.GetActiveScene();
 

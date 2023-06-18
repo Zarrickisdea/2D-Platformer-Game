@@ -9,17 +9,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jump;
     [SerializeField] private bool isGrounded;
     [SerializeField] private LayerMask groundLayerMask;
-    public int collected;
-    private int health;
     [SerializeField] private GameObject canvas;
+    private int collected;
+    private int health;
     private HealthDisplay healthDisplay;
     
-
     private void Start () 
     {
         health = 3;
         collected = 0;
         rigidbody2d = GetComponent<Rigidbody2D>();
+
         if (canvas != null)
         {
             healthDisplay = canvas.GetComponent<HealthDisplay>();
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
     private bool IsCollidingWithLayer(Collision2D collision, LayerMask layerMask)
     {
         return (layerMask.value & (1 << collision.gameObject.layer)) != 0;
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigidbody2d.AddForce(new Vector2(rigidbody2d.velocity.y, jump));
+            rigidbody2d.AddForce(new Vector2(0f, jump));
         }
     }
 
@@ -94,14 +95,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown("left ctrl") || Input.GetKeyDown("right ctrl"))
         {
-            Animator.SetTrigger(AnimationTriggers.SomeTrigger);
-            Animator.ResetTrigger(AnimationTriggers.OtherTrigger);
+            Animator.SetTrigger(AnimationTriggers.CrouchTrigger);
+            Animator.ResetTrigger(AnimationTriggers.CrouchReverseTrigger);
             Animator.SetBool(AnimationTriggers.Crouched, true);
         }
+
         else if (Input.GetKeyUp("left ctrl") || Input.GetKeyUp("right ctrl"))
         {
-            Animator.SetTrigger(AnimationTriggers.OtherTrigger);
-            Animator.ResetTrigger(AnimationTriggers.SomeTrigger);
+            Animator.SetTrigger(AnimationTriggers.CrouchReverseTrigger);
+            Animator.ResetTrigger(AnimationTriggers.CrouchTrigger);
             Animator.SetBool(AnimationTriggers.Crouched, false);
         }
     }
@@ -121,11 +123,10 @@ public class PlayerController : MonoBehaviour
         else
         {
             health = health - 1;
-        }
-      
-        if (healthDisplay != null)
-        {
-            healthDisplay.UpdateHealthDisplay();
+            if (healthDisplay != null)
+            {
+                healthDisplay.DestroyHeart();
+            }
         }
     }
 
@@ -137,5 +138,10 @@ public class PlayerController : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+
+    public int GetCollected()
+    {
+        return collected;
     }
 }

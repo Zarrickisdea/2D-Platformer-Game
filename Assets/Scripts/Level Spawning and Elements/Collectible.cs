@@ -7,24 +7,20 @@ public class Collectible : MonoBehaviour
         transform.Rotate(0, 5f, 0, Space.World);
     }
 
-	void OnTriggerEnter2D(Collider2D other) 
-    {
+	void OnTriggerEnter2D(Collider2D other)
+    { 
         other.gameObject.GetComponent<PlayerController>().Pickup();
-
         ActivateEnd();
-		Destroy(gameObject);
+        Destroy(gameObject);
 	}
 
     private void ActivateEnd()
     {
         if (levelEnd != null)
         {
-            GameObject endPoint = GameObject.FindGameObjectWithTag("Finish");
-            Vector3 spawnPosition = endPoint.transform.position;
+            Vector3 spawnPosition = Spawner.Instance.getEnding().position;
             spawnPosition.y -= 1f;
-
-
-            Instantiate(levelEnd, spawnPosition, Quaternion.identity) ;
+            Instantiate(levelEnd, spawnPosition, Quaternion.identity);
         }
     }
 }

@@ -10,13 +10,12 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-		text = GetComponent<Text>(); 
+        text = GetComponent<Text>(); 
     }
 
     void Update()
     {
-		collected = player.GetComponent<PlayerController>().collected;
-		
-		text.text = "Score: " + collected;        
+        collected = player.GetComponent<PlayerController>().GetCollected();
+		text.text = "Score: " + collected;
     }
 }

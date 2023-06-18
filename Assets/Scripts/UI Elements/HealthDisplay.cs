@@ -17,7 +17,6 @@ public class HealthDisplay : MonoBehaviour
             currentHealth = playerController.GetHealth();
             UpdateHealthDisplay();
         }
-
     }
 
     public void UpdateHealthDisplay()
@@ -26,15 +25,17 @@ public class HealthDisplay : MonoBehaviour
         {
             currentHealth = playerController.GetHealth();
         }
-        foreach (Transform child in heartsContainer)
-        {
-            Destroy(child.gameObject);
-        }
 
         for (int i = 0; i < currentHealth; i++)
         {
             Image heartImage = Instantiate(heartImagePrefab, heartsContainer);
             heartImage.transform.localPosition = new Vector3(i * heartSpace, 0f, 0f);
         }
+    }
+
+    public void DestroyHeart()
+    {
+        Transform child = heartsContainer.GetChild(heartsContainer.childCount - 1);
+        Destroy(child.gameObject);
     }
 }

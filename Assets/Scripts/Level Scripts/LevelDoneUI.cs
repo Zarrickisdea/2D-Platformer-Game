@@ -6,7 +6,9 @@ public class LevelDoneUI : MonoBehaviour
 {
     private static LevelDoneUI instance;
     public static LevelDoneUI Instance { get { return instance; } }
+
     [SerializeField] private GameObject levelDoneText;
+
     private void Awake()
     {
         if (instance == null)
@@ -19,6 +21,7 @@ public class LevelDoneUI : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void ShowLevelDoneUI(string nextSceneName)
     {
         levelDoneText.SetActive(true);
@@ -29,8 +32,7 @@ public class LevelDoneUI : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         levelDoneText.SetActive(false);
+        Spawner.Instance.Burn();
         SceneManager.LoadScene(nextSceneName);
     }
-
-
 }
