@@ -25,6 +25,7 @@ public class LevelDoneUI : MonoBehaviour
     public void ShowLevelDoneUI(string nextSceneName)
     {
         levelDoneText.SetActive(true);
+        SoundManager.Instance.Play(Sounds.EndLevel);
         StartCoroutine(LoadNextScene(nextSceneName));
     }
 

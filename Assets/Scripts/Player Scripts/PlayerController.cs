@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour
 
     public void Damage()
     {
+        SoundManager.Instance.Play(Sounds.PlayerHit);
         if (health <= 1)
         {
             InstaKill();
@@ -132,6 +133,7 @@ public class PlayerController : MonoBehaviour
 
     public void InstaKill()
     {
+        SoundManager.Instance.Play(Sounds.DeathMusic);
         SceneManager.LoadScene("Death");
     }
 

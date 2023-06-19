@@ -9,6 +9,7 @@ public class PlayGame : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instance.PlayBackgroundMusic(Sounds.BackgroundMusic);
         if (playButton != null && quitButton != null)
         {
             playButton.onClick.AddListener(EnterGame);
@@ -20,6 +21,7 @@ public class PlayGame : MonoBehaviour
     {
         if (playButton != null) 
         {
+            SoundManager.Instance.Play(Sounds.ButtonClick);
             SceneManager.LoadScene(1);
         }
     }

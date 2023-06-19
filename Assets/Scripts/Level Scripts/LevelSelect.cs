@@ -29,12 +29,16 @@ public class LevelSelect : MonoBehaviour
                 Debug.Log("Cannot play until unlocked");
                 break;
 
-            case LevelState.Unlocked: 
+            case LevelState.Unlocked:
+                SoundManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(levelName);
+                SoundManager.Instance.PlayBackgroundMusic(Sounds.GameplayMusic);
                 break;
 
-            case LevelState.Completed: 
+            case LevelState.Completed:
+                SoundManager.Instance.Play(Sounds.ButtonClick);
                 SceneManager.LoadScene(levelName);
+                SoundManager.Instance.PlayBackgroundMusic(Sounds.GameplayMusic);
                 break;
         }
     }

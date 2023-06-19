@@ -12,6 +12,7 @@ public class DeathScreen : MonoBehaviour
     {
         if (playAgainButton != null && quitButton != null)
         {
+            SoundManager.Instance.StopMusic();
             playAgainButton.onClick.AddListener(PlayAgain);
             quitButton.onClick.AddListener(QuitGame);
         }
@@ -20,6 +21,7 @@ public class DeathScreen : MonoBehaviour
     void PlayAgain () 
     {
         SceneManager.LoadScene(0);
+        Spawner.Instance.Burn();
     }
 
     void QuitGame ()

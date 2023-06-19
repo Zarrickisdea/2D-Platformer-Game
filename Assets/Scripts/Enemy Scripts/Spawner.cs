@@ -51,10 +51,10 @@ public class Spawner : MonoBehaviour
 
         SpawnPrefabs(availablePositions);
 
-        SpawnEndPoistion(availablePositions);
+        SpawnEndPosition(availablePositions);
     }
 
-    private void SpawnEndPoistion(List<Vector3Int> availablePositions)
+    private void SpawnEndPosition(List<Vector3Int> availablePositions)
     {
         Vector3Int endPosition = GetDistinctPosition(availablePositions);
         Vector3 endCell = ground.GetCellCenterWorld(endPosition);
@@ -70,7 +70,7 @@ public class Spawner : MonoBehaviour
             {
                 Vector3Int randomPosition = GetDistinctPosition(availablePositions);
                 Vector3 cellPosition = ground.GetCellCenterWorld(randomPosition);
-                GameObject spawnedObject = Instantiate(prefabs[i], cellPosition, Quaternion.identity);
+                Instantiate(prefabs[i], cellPosition, Quaternion.identity);
             }
         }
     }
