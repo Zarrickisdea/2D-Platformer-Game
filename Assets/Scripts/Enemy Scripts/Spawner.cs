@@ -12,7 +12,6 @@ public class Spawner : MonoBehaviour
     private Transform ending;
     [SerializeField] private GameObject endPoint;
     [SerializeField] private Tilemap ground;
-    [SerializeField] private Tile groundTile;
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private GameObject[] patrolPoints;
 
@@ -51,10 +50,10 @@ public class Spawner : MonoBehaviour
 
         SpawnPrefabs(availablePositions);
 
-        SpawnEndPoistion(availablePositions);
+        SpawnEndPosition(availablePositions);
     }
 
-    private void SpawnEndPoistion(List<Vector3Int> availablePositions)
+    private void SpawnEndPosition(List<Vector3Int> availablePositions)
     {
         Vector3Int endPosition = GetDistinctPosition(availablePositions);
         Vector3 endCell = ground.GetCellCenterWorld(endPosition);
@@ -70,7 +69,7 @@ public class Spawner : MonoBehaviour
             {
                 Vector3Int randomPosition = GetDistinctPosition(availablePositions);
                 Vector3 cellPosition = ground.GetCellCenterWorld(randomPosition);
-                GameObject spawnedObject = Instantiate(prefabs[i], cellPosition, Quaternion.identity);
+                Instantiate(prefabs[i], cellPosition, Quaternion.identity);
             }
         }
     }
@@ -91,7 +90,7 @@ public class Spawner : MonoBehaviour
     {
         foreach (Vector3Int position in area.allPositionsWithin)
         {
-            if (ground.GetTile(position) == groundTile)
+            if (ground.HasTile(position))
             {
                 Vector3Int offsetPosition = new Vector3Int(position.x, position.y + 1, position.z);
                 availablePositions.Add(offsetPosition);

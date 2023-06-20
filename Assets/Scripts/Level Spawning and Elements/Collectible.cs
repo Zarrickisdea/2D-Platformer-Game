@@ -8,7 +8,8 @@ public class Collectible : MonoBehaviour
     }
 
 	void OnTriggerEnter2D(Collider2D other)
-    { 
+    {
+        SoundManager.Instance.Play(Sounds.Pickup);
         other.gameObject.GetComponent<PlayerController>().Pickup();
         ActivateEnd();
         Destroy(gameObject);

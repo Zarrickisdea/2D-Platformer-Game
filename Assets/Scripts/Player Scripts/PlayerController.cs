@@ -7,13 +7,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidbody2d;
     [SerializeField] private float velocity;
     [SerializeField] private float jump;
-    [SerializeField] private bool isGrounded;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private GameObject canvas;
     private int collected;
     private int health;
     private HealthDisplay healthDisplay;
-    
+    private float yVelocity;
+    private bool isGrounded;
+
     private void Start () 
     {
         health = 3;
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (IsCollidingWithLayer(collision, groundLayerMask) && !isGrounded)
+        if (IsCollidingWithLayer(collision, groundLayerMask))
         {
             isGrounded = true;
         }
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (IsCollidingWithLayer(collision, groundLayerMask) && isGrounded)
+        if (IsCollidingWithLayer(collision, groundLayerMask))
         {
             isGrounded = false;
         }
@@ -54,26 +55,39 @@ public class PlayerController : MonoBehaviour
     private void Update ()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
+        yVelocity = rigidbody2d.velocity.y;
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
+        }
 
         Animations(horizontal);
-        Movement(horizontal, jump);
+        Movement(horizontal);
     }
 
-    private void Movement (float horizontal, float jump) 
+    private void Jump()
+    {
+        if (isGrounded)
+        {
+            rigidbody2d.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+            isGrounded = false;
+        }
+    }
+
+    private void Movement (float horizontal) 
     {
         Vector3 position = transform.position;
         position.x += horizontal * velocity * Time.deltaTime;
         transform.position = position;
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rigidbody2d.AddForce(new Vector2(0f, jump));
-        }
     }
 
     private void Animations (float horizontal) 
     {
-        Animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        Animator.SetFloat(AnimationTriggers.Speed, Mathf.Abs(horizontal));
+        Animator.SetFloat(AnimationTriggers.yVelocity, yVelocity);
+        Animator.SetBool(AnimationTriggers.wasJumping, !isGrounded);
+        Animator.SetBool(AnimationTriggers.isGrounded, isGrounded);
 
         Vector3 scale = transform.localScale;
 
@@ -84,11 +98,6 @@ public class PlayerController : MonoBehaviour
         else if (horizontal > 0)
         {
             scale.x = Mathf.Abs(scale.x);
-        }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            Animator.SetTrigger(AnimationTriggers.Jumped);
         }
 
         transform.localScale = scale;
@@ -115,6 +124,7 @@ public class PlayerController : MonoBehaviour
 
     public void Damage()
     {
+        SoundManager.Instance.Play(Sounds.PlayerHit);
         if (health <= 1)
         {
             InstaKill();
@@ -132,6 +142,7 @@ public class PlayerController : MonoBehaviour
 
     public void InstaKill()
     {
+        SoundManager.Instance.Play(Sounds.DeathMusic);
         SceneManager.LoadScene("Death");
     }
 
