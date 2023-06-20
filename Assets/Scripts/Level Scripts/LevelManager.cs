@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
         SetLevelState(currentScene.name, LevelState.Completed);
 
         int nextSceneIndex = currentScene.buildIndex; //Done because Levels in build settings start from index 2 upto 7
-        if (nextSceneIndex <= 7)
+        if (nextSceneIndex < 7)
         {
             string nextSceneName = "Level" + nextSceneIndex;
             SetLevelState(nextSceneName, LevelState.Unlocked);
