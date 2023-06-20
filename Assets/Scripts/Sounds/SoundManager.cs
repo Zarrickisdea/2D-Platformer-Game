@@ -79,5 +79,6 @@ public enum Sounds
     GameplayMusic,
     DeathMusic,
     Pickup,
-    EndLevel
+    EndLevel,
+    FinishMusic
 }

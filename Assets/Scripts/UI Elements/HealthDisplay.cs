@@ -29,7 +29,7 @@ public class HealthDisplay : MonoBehaviour
         for (int i = 0; i < currentHealth; i++)
         {
             Image heartImage = Instantiate(heartImagePrefab, heartsContainer);
-            heartImage.transform.localPosition = new Vector3(i * heartSpace, 0f, 0f);
+            heartImage.transform.localPosition = new Vector3(i * heartSpace, heartSpace, 0f);
         }
     }
 

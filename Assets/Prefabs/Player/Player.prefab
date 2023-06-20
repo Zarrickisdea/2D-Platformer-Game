@@ -34,7 +34,7 @@ RectTransform:
   m_Children:
   - {fileID: 7391868431749115638}
   - {fileID: 986846677}
-  - {fileID: 7082024438242284330}
+  - {fileID: 78223946253221489}
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartImagePrefab: {fileID: 3242399448774409770, guid: e78e5c72f0bd8f74fa6708b069d2b9df,
     type: 3}
-  heartsContainer: {fileID: 7082024438242284330}
+  heartsContainer: {fileID: 78223946253221489}
   heartSpace: 30
 --- !u!114 &5961920881301087154
 MonoBehaviour:
@@ -314,7 +314,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7082024438242284330}
+  - component: {fileID: 78223946253221489}
   m_Layer: 0
   m_Name: HealthContainer
   m_TagString: Untagged
@@ -322,20 +322,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7082024438242284330
-Transform:
+--- !u!224 &78223946253221489
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096304094566035953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 411, y: 306, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383926767}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -131.55, y: -50}
+  m_SizeDelta: {x: 263.10742, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6477610562945389599
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +459,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0148079395, y: 0.98150957}
+  m_Offset: {x: -0.0148079395, y: 0.9741236}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.42, y: 0.1}
@@ -465,7 +470,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44134283, y: 2.09611}
+  m_Size: {x: 0.44134283, y: 2.110882}
   m_EdgeRadius: 0
 --- !u!95 &640491034
 Animator:
@@ -500,13 +505,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Animator: {fileID: 640491034}
   rigidbody2d: {fileID: 0}
-  velocity: 10
-  jump: 300
+  velocity: 8
+  jump: 7
   isGrounded: 0
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  collected: 0
   canvas: {fileID: 383926763}
 --- !u!1 &7763167866064822927
 GameObject:

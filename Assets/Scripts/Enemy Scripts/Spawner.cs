@@ -12,7 +12,6 @@ public class Spawner : MonoBehaviour
     private Transform ending;
     [SerializeField] private GameObject endPoint;
     [SerializeField] private Tilemap ground;
-    [SerializeField] private Tile groundTile;
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private GameObject[] patrolPoints;
 
@@ -91,7 +90,7 @@ public class Spawner : MonoBehaviour
     {
         foreach (Vector3Int position in area.allPositionsWithin)
         {
-            if (ground.GetTile(position) == groundTile)
+            if (ground.HasTile(position))
             {
                 Vector3Int offsetPosition = new Vector3Int(position.x, position.y + 1, position.z);
                 availablePositions.Add(offsetPosition);
